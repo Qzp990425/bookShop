@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+1、Mapper.xml文件中的namespace与mapper接口的类路径相同。
+2、Mapper接口方法名和Mapper.xml中定义的每个statement的id相同
+3、Mapper接口方法的输入参数类型和mapper.xml中定义的每个sql 的parameterType的类型相同
+4、Mapper接口方法的输出参数类型和mapper.xml中定义的每个sql的resultType的类型相同
+5、接口与xml文件必同名，而且在同一个路径下
+-->
+
+<mapper namespace="com.zj.dao.BookMapper">
+	<select id="getAllBook" resultType="com.zj.entity.Book">
+		select * from book
+	</select>
+	
+	<select id="getBookByType" resultType="com.zj.entity.Book">
+		select * from book where type = #{type}
+	</select>
+	  
+	
+	<select id="getBookOnSale" resultType="com.zj.entity.Book">
+		select * from book where status = 0
+	</select>
+	
+	<select id="getBookOnSaleByType" resultType="com.zj.entity.Book">
+		select * from book where status = 0 and type = #{type}
+	</select> 
+	
+	<insert id="insertBook" parameterType="com.zj.entity.Book">
+		insert into book(uuid,name,price,type,introduction) values(#{uuid},#{name},#{price},#{type},#{introduction})
+	</insert>
+	
+	<update id="putBook">
+		update book set status = 1 where bid = #{bid}
+	</update>
+	
+	<update id="pushBook">
+		update book set status = 0 where bid = #{bid}
+	</update>
+	
+	<select id="getBookByBid" resultType="com.zj.entity.Book">
+		select * from book where bid = #{bid}
+	</select>
+	
+	<insert id="addBook" parameterType="com.zj.entity.Book">
+		insert into book(uuid,name,price,type,introduction) values(#{uuid},#{name},#{price},#{type},#{introduction})
+	</insert>
+	
+	<select id="getBookByName" resultType="com.zj.entity.Book">
+		select * from book where name like '%${value}%'
+	</select>
+</mapper>

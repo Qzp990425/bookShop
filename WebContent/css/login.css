@@ -1,0 +1,29 @@
+#sp-main{
+	width:100%;
+	height:100%;
+	background:url(../img/bg2.jpg) no-repeat  center center;
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+#sp-main .row{
+	width:100%;
+	height:100%;
+}
+#sp-main .row #sp-index{
+	height:45%;
+	background-color:#fff;
+	border:3px solid #000;
+}
+#sp-main .row #sp-index #botton-class>button{
+	margin-left:20px;
+	margin-right:0px;
+}
+#sp-main .row #sp-index #botton-class #mess{
+}
+#sp-main .row #sp-index	#sp-useradmin>a{
+	font-size:12px;
+	text-decoration: none;
+}
+#sp-main .row #sp-index	#sp-useradmin a:hover{
+	text-decoration: none;
+}

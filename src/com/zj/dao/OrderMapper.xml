@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+1、Mapper.xml文件中的namespace与mapper接口的类路径相同。
+2、Mapper接口方法名和Mapper.xml中定义的每个statement的id相同
+3、Mapper接口方法的输入参数类型和mapper.xml中定义的每个sql 的parameterType的类型相同
+4、Mapper接口方法的输出参数类型和mapper.xml中定义的每个sql的resultType的类型相同
+5、接口与xml文件必同名，而且在同一个路径下
+-->
+
+<mapper namespace="com.zj.dao.OrderMapper">
+	<insert id="insertOrder" parameterType="java.util.List">
+		insert into orderRecord(uuid,status,bid,number,createTime,buyId) values
+		<foreach collection="list" item="orderRecord" separator=","> 
+        (#{orderRecord.uuid},#{orderRecord.status},#{orderRecord.bid},#{orderRecord.number},#{orderRecord.createTime},#{orderRecord.buyId})
+   		 </foreach>
+	</insert>
+	
+	<select id="getOrderByUid" parameterType="com.zj.entity.User" resultType="com.zj.entity.OrderRecord">
+		select * from orderRecord where buyId = #{uid}
+	</select>
+	
+	<update id="updateOrderStatusToOne" parameterType="com.zj.entity.OrderRecord">
+		update orderRecord set status = 1 , sendTime=#{sendTime} where oid = #{oid}
+	</update>
+	
+	<update id="updateOrderStatusToTwo" parameterType="com.zj.entity.OrderRecord">
+		update orderRecord set status = 2 , doneTime=#{doneTime} where oid = #{oid}
+	</update>
+	
+	<select id="getAllOrder" resultType="com.zj.entity.OrderRecord">
+		select * from orderRecord
+	</select>
+	
+	<select id="getOrderByType" resultType="com.zj.entity.OrderRecord">
+		select * from orderRecord where status = #{status}
+	</select>
+</mapper>

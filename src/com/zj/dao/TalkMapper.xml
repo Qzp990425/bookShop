@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+1、Mapper.xml文件中的namespace与mapper接口的类路径相同。
+2、Mapper接口方法名和Mapper.xml中定义的每个statement的id相同
+3、Mapper接口方法的输入参数类型和mapper.xml中定义的每个sql 的parameterType的类型相同
+4、Mapper接口方法的输出参数类型和mapper.xml中定义的每个sql的resultType的类型相同
+5、接口与xml文件必同名，而且在同一个路径下
+-->
+
+
+
+<mapper namespace="com.zj.dao.TalkMapper">
+
+    <select id="getTalkByBid" resultType="com.zj.entity.Talk">
+        select * from talk where bid = #{bid}
+    </select>
+	
+	<delete id="deleteTalk">
+		delete from talk where tid = #{tid} 
+	</delete>
+	
+	<insert id="insertTalk" parameterType="com.zj.entity.User">
+        insert into talk(uid,bid,content,sendTime) values(#{uid},#{bid},#{content},#{sendTime})
+    </insert>
+</mapper>
